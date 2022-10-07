@@ -1,31 +1,59 @@
-// PRODUCT OF ARRAY EXCEPT SELF
-#include<stdio.h>
+// PRODUCT OF EXCEPT SELF AND WITH O(n) 
+#include<iostream>
 using namespace std;
-void ProductOfArr(int [], int);
-void ProductOfArr(int a[], int s)
+
+int  main ()
 {
-    int res = 1;
-    for (int i=0; i<s; i++)
+    int n; cout<<"Enter Size of array: ";
+    cin >> n;
+    int arr[n];
+    cout<<"Enter array of size "<<n;
+    for (int i = 0; i<n; i++)
     {
-        for (int j = 0; j<s; j++)
+        cin >> arr[i];
+    }
+    int mul = 1;
+
+    // Getting Count of zero(s) present in array
+    int cnt = 0;
+    for (int i=0; i<n; i++)
+    {
+        if(arr[i] == 0)
+            cnt++;
+    }
+// if count is 0
+    if (cnt == 0)
+    {
+        for (int i=0; i<n; i++)
         {
-            if(i != j)
-                res = res*a[j];
+            mul = mul*arr[i];
         }
-        printf ("%d ", res);
-        res = 1;
+        for (int i=0; i<n; i++)
+        {
+            cout<<mul/arr[i]<<" ";
+        }   
     }
-}
-int main ()
-{
-    int nums[10], s;
-    printf ("Enter size of array: ");
-    scanf ("%d", &s);
-    printf ("Enter %d elements of  array: ", s);
-    for(int i=0; i<s; i++)
+    // if Count becomes 1
+    else if(cnt == 1)
     {
-        scanf ("%d", &nums[i]);
+        for (int i=0; i<n; i++)
+        {
+            if (arr[i] != 0)
+                mul = mul*arr[i];
+        }
+        for(int i=0; i<n; i++)
+        {
+            if(arr[i] != 0)
+                cout<< "0"<<" ";
+            else
+                cout<<mul<<" ";
+        }
     }
-    ProductOfArr(nums, s);
+    // If Count is Greater than 1
+    else
+    {
+        for(int i=0; i<n; i++)
+            cout<<"0"<<" ";
+    }
     return 0;
 }
